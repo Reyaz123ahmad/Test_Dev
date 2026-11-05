@@ -155,7 +155,7 @@ export default function Dashboard() {
 
           <button
             onClick={() => navigate('/create-user')}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            className="bg-blue-600 text-white px-4 py-1 rounded-lg hover:bg-blue-700"
           >
             + Create User
           </button>
@@ -213,7 +213,7 @@ export default function Dashboard() {
                           onClick={() =>
                             navigate(`/update-user/${user.id}/edit`)
                           }
-                          className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600"
+                          className="bg-yellow-500 text-white px-2 rounded hover:bg-yellow-600"
                         >
                           Edit
                         </button>

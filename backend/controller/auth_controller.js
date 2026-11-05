@@ -152,7 +152,7 @@ exports.chnagePassword = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-        await prisma.user.update({
+        await prisma.admin.update({
             where: { email },
             data: { password: hashedPassword }
         });

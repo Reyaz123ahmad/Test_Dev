@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import api from '../api/api';
 
@@ -90,30 +89,14 @@ export default function CreateUser() {
               value={form[name]}
               onChange={handleChange}
               required
-              className="w-full border p-3 rounded-lg"
+              className="w-full border p-1 rounded-lg"
             />
           </div>
         ))}
 
-        <div>
-          <label className="block font-medium mb-2">
-            Role
-          </label>
-
-          <select
-            name="role"
-            value={form.role}
-            onChange={handleChange}
-            className="w-full border p-3 rounded-lg"
-          >
-            <option value="User">User</option>
-            <option value="Admin">Admin</option>
-          </select>
-        </div>
-
         <button
           disabled={loading}
-          className="md:col-span-2 bg-blue-600 text-white p-3 rounded-lg"
+          className="md:col-span-2 bg-blue-600 text-white p-2 rounded-lg"
         >
           {loading ? 'Creating...' : 'Create User'}
         </button>

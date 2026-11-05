@@ -49,8 +49,8 @@ export default function ChangePassword() {
   };
 
   return (
-    <div className="max-w-xl">
-      <h1 className="text-3xl font-bold mb-6">
+    <div className="w-full flex flex-col items-center justify-center">
+      <h1 className="text-xl font-bold mb-6">
         Change Password
       </h1>
 
@@ -81,7 +81,7 @@ export default function ChangePassword() {
             value={form.oldPassword}
             onChange={handleChange}
             required
-            className="w-full border p-3 rounded-lg"
+            className="w-full border p-1 rounded-lg"
           />
         </div>
 
@@ -97,13 +97,13 @@ export default function ChangePassword() {
             onChange={handleChange}
             required
             minLength={8}
-            className="w-full border p-3 rounded-lg"
+            className="w-full border p-1 rounded-lg"
           />
         </div>
 
         <button
           disabled={loading}
-          className="w-full bg-blue-600 text-white p-3 rounded-lg"
+          className="w-full bg-blue-600 text-white p-1 rounded-lg"
         >
           {loading ? 'Updating...' : 'Update Password'}
         </button>
