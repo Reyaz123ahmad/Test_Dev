@@ -18,7 +18,7 @@ export default function UpdateUser() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
-    // Fetch user by ID
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
@@ -44,7 +44,7 @@ export default function UpdateUser() {
         fetchUser();
     }, [id]);
 
-    // Input change
+  
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -52,7 +52,7 @@ export default function UpdateUser() {
         });
     };
 
-    // Update user
+  
     const handleSubmit = async (e) => {
         e.preventDefault();
 

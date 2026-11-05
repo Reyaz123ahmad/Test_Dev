@@ -124,7 +124,28 @@ exports.adminProfile = async (req, res) =>{
     }
 }
 
+exports.getAdminCount = async(req, res) =>{
+    try{
+        const totalCount = await prisma.admin.count();
+        
+        // const grouped = await prisma.admin.groupBy({
+        //     by:["id"],
+        //     _count:{
+        //         _all:true
+        //     }
+        // })
+        
 
+        // const totalCount = grouped.length;
+        res.status(200).json({ 
+            message: "Admin count fetched successfully", 
+            data: { total: totalCount } 
+        });
+    }catch(err){
+        console.log(err);
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
 
 exports.chnagePassword = async (req, res) => {
     try{

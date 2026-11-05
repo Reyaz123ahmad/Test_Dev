@@ -10,6 +10,7 @@ export default function Dashboard() {
     blocked: 0,
     unblocked: 0,
   });
+  const [adminCount, setAdminCount] = useState({total: 0})
 
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +41,28 @@ export default function Dashboard() {
     fetchStats();
   }, []);
 
-  // Users table ke liye data fetch
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await api.get('/auth/admin/count');
+
+        const data = response.data.data;
+
+        setAdminCount({
+          total: data?.total ?? 0
+        });
+      } catch (err) {
+        setError(
+          err.response?.data?.message ||
+          'Failed to load dashboard'
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
   const fetchUsers = async () => {
     try {
       const response = await api.get('/users/allGet');
@@ -57,7 +79,7 @@ export default function Dashboard() {
     fetchUsers();
   }, []);
 
-  // Delete user
+  
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this user?')) {
       return;
@@ -74,7 +96,7 @@ export default function Dashboard() {
     }
   };
 
-  // Block user
+  
   const handleBlock = async (id) => {
     try {
       await api.put(`/users/block/${id}`);
@@ -87,7 +109,7 @@ export default function Dashboard() {
     }
   };
 
-  // Unblock user
+ 
   const handleUnblock = async (id) => {
     try {
       await api.put(`/users/unblock/${id}`);
@@ -101,6 +123,11 @@ export default function Dashboard() {
   };
 
   const cards = [
+    {
+      title: "Total Admins",
+      value: adminCount.total,
+      color: "bg-blue-100 text-blue-700"
+    },
     {
       title: 'Total Users',
       value: stats.total,
@@ -119,7 +146,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div>
+    <di>
       <h1 className="text-3xl font-bold mb-6">
         Admin Dashboard
       </h1>
@@ -130,23 +157,23 @@ export default function Dashboard() {
         <p className="text-red-600 mb-4">{error}</p>
       )}
 
-      {/* Statistics cards - unchanged */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {cards.map((card) => (
           <div
             key={card.title}
-            className={`${card.color} p-6 rounded-xl shadow-sm`}
+            className={`${card.color} px-2 py-1 rounded-xl shadow-sm`}
           >
             <p className="font-medium">{card.title}</p>
 
-            <h2 className="text-4xl font-bold mt-3">
+            <h2 className="text-2xl font-bold mt-3">
               {card.value}
             </h2>
           </div>
         ))}
       </div>
 
-      {/* Users table */}
+   
       <div className="mt-8 bg-white rounded-xl shadow-sm p-6">
         <div className="flex justify-between items-center mb-5">
           <h2 className="text-2xl font-bold">
@@ -255,6 +282,6 @@ export default function Dashboard() {
           </table>
         </div>
       </div>
-    </div>
+    </di>
   );
 }

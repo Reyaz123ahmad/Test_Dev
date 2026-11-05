@@ -46,7 +46,7 @@ export default function Login() {
       localStorage.setItem('admin', JSON.stringify(admin));
     }
 
-    // Verify the new token before entering dashboard.
+    
     await api.get('/auth/admin/profile');
 
     navigate('/dashboard', { replace: true });
