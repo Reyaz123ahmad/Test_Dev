@@ -42,7 +42,7 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchAdmins = async () => {
       try {
         const response = await api.get('/auth/admin/count');
 
@@ -61,7 +61,7 @@ export default function Dashboard() {
       }
     };
 
-    fetchStats();
+    fetchAdmins();
   }, []);
   const fetchUsers = async () => {
     try {
